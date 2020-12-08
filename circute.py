@@ -7,7 +7,7 @@
 # Run: ./circuit.py or python3 circuit.py
 
 class Resistor:
-    """ A Resistor of 1 ohms by default"""
+    """ A Resistor of 1 ohms by default """
 
     def __init__(self, mag=1):
         self.magnitude = mag
@@ -65,6 +65,7 @@ class CircuitAlgebra:
         self.circuit = circuit
 
     def component_detail(self, component_type=None):
+        """ Returns the number of components of type `component_type` and their sum """
         num_components = 0
         sum_components = 0
 
@@ -73,15 +74,15 @@ class CircuitAlgebra:
             for component in self.circuit.board:
                 if type(component) == component_type:
                     num_components += 1
-
-            for component in self.circuit.board:
-                if type(component) == component_type:
                     sum_components += component.magnitude
 
         return [num_components, sum_components]
 
-    # Rewrite a generalized version of this function
+    # Rewrite `circuit_details` in a generalized version so that the
+    # function itself can tell what components it is made up of
     def circuit_details(self):
+        """ Returns the details of the components on the board, for the Voltages, 
+        the Currents and Resistors """
         res = self.component_detail(Resistor)
         volt = self.component_detail(Voltage)
         cur = self.component_detail(Current)
@@ -89,6 +90,8 @@ class CircuitAlgebra:
         return f"Res({res[0]}: {res[1]}), Cur({cur[0]}: {cur[1]}), Volt({volt[0]}: {volt[1]})"
 
     def evaluate_board(self):
+        """ Evaluates and then calls the `self.circuit_detail` to prints
+         details of the components on the board  """
         res = self.component_detail(Resistor)
         volt = self.component_detail(Voltage)
         cur = self.component_detail(Current)
@@ -115,20 +118,22 @@ class CircuitAlgebra:
             if volt[1] != cur[1] * res[1]:
                 print(
                     "Board inaccurate - voltage does not \
-                        correspond to the current and resistance")
+                        correspond to the current and resistance.")
 
         print(self.circuit_details())
 
 
+# The components to use
 v = Voltage(4.5)
 r1 = Resistor(4.0)
 r2 = Resistor(4.5)
 # i = Current(2.5)
 
+# A circuit instance to mount the components
 cir = Circuit(r1, r2, v)
-
 cir.display_circuit_board()
 
+# An Algebraic instance of the circuit to evaluate the
 alg = CircuitAlgebra(cir)
 print(alg.circuit_details())
 alg.evaluate_board()
