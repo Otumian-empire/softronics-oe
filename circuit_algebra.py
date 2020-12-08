@@ -1,3 +1,6 @@
+from components import Current, Resistor, Voltage
+
+
 class CircuitAlgebra:
 
     def __init__(self, circuit):
@@ -19,6 +22,7 @@ class CircuitAlgebra:
 
     # Rewrite `circuit_details` in a generalized version so that the
     # function itself can tell what components it is made up of
+    # Also there seems to be a dependency - No allowed
     def circuit_details(self):
         """ Returns the details of the components on the board, for the Voltages, 
         the Currents and Resistors """
