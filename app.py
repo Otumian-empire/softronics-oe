@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 # Developer: Otumian-empire
 # email: popecan1000@gmail.com
-# GitHub: https://www.github.com/Otumian-empire
+# GitHub: https://github.com/Otumian-empire/softronics-oe
 # Program: A simple program the demonstrate basic circuitory/electricity
 # concept involving ohms law, V=IR
-# Run: ./app.py or python3 circuit.py
+# Run: ./app.py or python3 app.py
 
 from circuit import Circuit
 from circuit_algebra import CircuitAlgebra
