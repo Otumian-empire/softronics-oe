@@ -21,7 +21,7 @@ class Current:
 class Voltage:
     """ A 1 volt Voltage supply """
 
-    def __init__(self, mag=0):
+    def __init__(self, mag=1):
         self.magnitude = mag
 
     def __str__(self):
